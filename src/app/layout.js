@@ -13,6 +13,21 @@ const geistMono = localFont({
   variable: "--font-geist-mono",
   weight: "100 900",
 });
+const vazir = localFont({
+  src: [
+    {
+      path: "./fonts/Vazirmatn-Light.ttf",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "./fonts/Vazirmatn-Regular.ttf",
+      weight: "400",
+      style: "normal",
+    },
+  ],
+  variable: "--font-vazir",
+});
 
 export const metadata = {
   title: "فروشگاه آنلاین تکنولوژی",
@@ -23,7 +38,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="fa" dir="rtl">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${vazir.variable} antialiased`}
       >
         <Header />
         <main className="min-h-screen">

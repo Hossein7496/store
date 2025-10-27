@@ -37,18 +37,20 @@ export default function ProductCard({ product }) {
 
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-      {/* تصویر محصول */}
+      {/* بخش تصویر محصول / Product image section */}
       <div className="relative">
         <img 
           src={product.image} 
           alt={product.name}
           className="w-full h-32 sm:h-40 md:h-48 object-cover"
         />
+        {/* نمایش درصد تخفیف / Show discount percentage */}
         {product.originalPrice > product.price && (
           <div className="absolute top-1 right-1 sm:top-2 sm:right-2 bg-red-500 text-white px-1 py-0.5 sm:px-2 sm:py-1 rounded-full text-xs sm:text-sm font-bold">
             {discountPercentage}% تخفیف
           </div>
         )}
+        {/* نمایش وضعیت ناموجود / Show out of stock status */}
         {!product.inStock && (
           <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
             <span className="text-white text-sm sm:text-lg font-bold">ناموجود</span>
@@ -56,8 +58,9 @@ export default function ProductCard({ product }) {
         )}
       </div>
 
-      {/* اطلاعات محصول */}
+      {/* بخش اطلاعات محصول / Product information section */}
       <div className="p-3 sm:p-4">
+        {/* برند و امتیاز محصول / Product brand and rating */}
         <div className="flex items-center justify-between mb-1 sm:mb-2">
           <span className="text-xs sm:text-sm text-gray-500">{product.brand}</span>
           <div className="flex items-center">
@@ -67,22 +70,25 @@ export default function ProductCard({ product }) {
           </div>
         </div>
 
+        {/* نام محصول / Product name */}
         <h3 className="text-sm sm:text-base md:text-lg font-semibold text-gray-800 mb-1 sm:mb-2 line-clamp-2">
           <a href={`/product/${product.id}`} className="hover:text-blue-600 transition-colors">
             {product.name}
           </a>
         </h3>
 
+        {/* توضیحات محصول / Product description */}
         <p className="text-gray-600 text-xs sm:text-sm mb-2 sm:mb-3 line-clamp-2">
           {product.description}
         </p>
 
-        {/* قیمت */}
+        {/* بخش قیمت / Price section */}
         <div className="mb-3 sm:mb-4">
           <div className="flex items-center space-x-1 sm:space-x-2 space-x-reverse">
             <span className="text-sm sm:text-base md:text-lg font-bold text-green-600">
               {formatPrice(product.price)}
             </span>
+            {/* نمایش قیمت اصلی در صورت تخفیف / Show original price if discounted */}
             {product.originalPrice > product.price && (
               <span className="text-xs sm:text-sm text-gray-500 line-through">
                 {formatPrice(product.originalPrice)}
@@ -91,7 +97,7 @@ export default function ProductCard({ product }) {
           </div>
         </div>
 
-        {/* ویژگی‌های کلیدی */}
+        {/* ویژگی‌های کلیدی محصول / Product key features */}
         <div className="mb-3 sm:mb-4">
           <div className="flex flex-wrap gap-1">
             {product.features.slice(0, 2).map((feature, index) => (
@@ -102,6 +108,7 @@ export default function ProductCard({ product }) {
                 {feature}
               </span>
             ))}
+            {/* نمایش تعداد ویژگی‌های بیشتر / Show count of additional features */}
             {product.features.length > 2 && (
               <span className="bg-gray-100 text-gray-600 text-xs px-1.5 py-0.5 sm:px-2 sm:py-1 rounded-full">
                 +{product.features.length - 2} بیشتر
@@ -110,7 +117,7 @@ export default function ProductCard({ product }) {
           </div>
         </div>
 
-        {/* دکمه افزودن به سبد خرید */}
+        {/* دکمه افزودن به سبد خرید / Add to cart button */}
         <button
           onClick={handleAddToCart}
           disabled={!product.inStock}

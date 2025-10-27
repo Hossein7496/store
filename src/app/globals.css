@@ -17,11 +17,21 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-vazir), Arial, Helvetica, sans-serif;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  
+  .font-vazir {
+    font-family: var(--font-vazir), sans-serif;
+  }
+  
+  .text-persian {
+    font-family: var(--font-vazir), sans-serif;
+    direction: rtl;
+    text-align: right;
   }
 }
